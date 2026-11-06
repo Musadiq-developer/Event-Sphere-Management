@@ -31,7 +31,7 @@ const io = new Server(httpServer, {
     methods: ["GET", "POST"]
   }
 });
-
+-
 // Middlewares
 app.use(express.json());
 app.use(cors());
@@ -40,7 +40,12 @@ app.use(cors());
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log(" Database Connected Successfully"))
   .catch(error => console.log(" Connection Error:", error));
-
+app.get('/', (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: 'MERN Backend API is running successfully '
+    });
+});
 // Static Files
 app.use('/uploads', express.static('uploads'));
 
